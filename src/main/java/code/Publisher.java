@@ -12,7 +12,7 @@ import javax.naming.InitialContext;
 import org.apache.log4j.BasicConfigurator;
 
 public class Publisher {
-	public static void main(String mss) throws Exception {
+	public static void main(String[] args) throws Exception {
 //thiết lập môi trường cho JMS logging
 		BasicConfigurator.configure();
 //thiết lập môi trường cho JJNDI
@@ -34,18 +34,12 @@ public class Publisher {
 //tạo producer
 		MessageProducer producer = session.createProducer(destination);
 //Tạo 1 message
-		Message msg = session.createTextMessage(mss);
+		Message msg = session.createTextMessage("this is the msg");
 //gửi
 		producer.send(msg);
 //shutdown connection
 		session.close();
 		con.close();
 		System.out.println("Finished...");
-	}
-	
-
-	
-	public void sendms(String mss) {
-		
 	}
 }
